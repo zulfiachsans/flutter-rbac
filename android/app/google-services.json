@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292110217286",
+    "project_id": "flutter-rbac-7856f",
+    "storage_bucket": "flutter-rbac-7856f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292110217286:android:bfa892ed2077570dae1a47",
+        "android_client_info": {
+          "package_name": "com.example.flutter_rbac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292110217286-jdnl8t02a74hqtvmrn5c4qs0fjv2ffjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEhQWSqrpVfJxe7IA3AqUYm1CNdfEW9KY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292110217286-jdnl8t02a74hqtvmrn5c4qs0fjv2ffjk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
