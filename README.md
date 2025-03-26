@@ -1,16 +1,68 @@
-# flutter_rbac
+# RBAC Mobile App (Flutter + Firebase)
 
-A new Flutter project.
+Aplikasi mobile berbasis Flutter dengan backend Firebase untuk manajemen pemesanan layanan.
 
-## Getting Started
+🚀 Fitur Saat Ini
 
-This project is a starting point for a Flutter application.
+✅ Login menggunakan Firebase Authentication
 
-A few resources to get you started if this is your first Flutter project:
+✅ CRUD Pemesanan (Tambah, Edit, Hapus, dan Lihat Daftar Pesanan)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✅ Penyimpanan data menggunakan Cloud Firestore
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🔧 Teknologi yang Digunakan
+
+Flutter (Frontend)
+
+Firebase Authentication (Login/Registrasi)
+
+Cloud Firestore (Database Realtime)
+
+📌 Rencana Pengembangan
+
+🔜 Role-Based Access Control (RBAC) untuk mengatur hak akses pengguna
+
+🔜 Pelacakan pemesanan dan laporan
+
+🔜 Notifikasi pemesanan
+
+📥 Instalasi dan Menjalankan Aplikasi
+
+Clone repositori:
+```sh
+git clone https://github.com/username/reponame.git
+cd reponame
+```
+
+Install dependencies:
+```sh
+flutter pub get
+```
+Jalankan aplikasi:
+```sh
+flutter run
+```
+🔑 Konfigurasi Firebase
+
+Buat proyek di [Firebase Console](https://console.firebase.google.com/)
+
+Tambahkan aplikasi Android/iOS ke Firebase.
+
+Unduh file `google-services.json` (untuk Android) atau `GoogleService-Info.plist` (untuk iOS) dan letakkan di folder `android/app` atau `ios/Runner`.
+
+Aktifkan Firebase Authentication dan Cloud Firestore di Firebase Console.
+
+Pastikan izin internet ditambahkan di `AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+🛠 Kontribusi
+
+Pull request selalu diterima! Pastikan untuk membuat branch baru sebelum melakukan perubahan.
+
+📄 Lisensi
+
+Proyek ini menggunakan lisensi MIT.
+
+💡 Dibuat dengan Flutter & Firebase untuk mempermudah manajemen pemesanan!
