@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rbac/utils/colors.dart';
 import 'package:flutter_rbac/utils/text_style.dart';
@@ -14,6 +15,11 @@ class _OrderPageState extends State<OrderPage> {
   final CollectionReference ordersCollection =
       FirebaseFirestore.instance.collection('orders');
   final TextEditingController serviceController = TextEditingController();
+  final User? user = FirebaseAuth.instance.currentUser;
+
+  Stream<QuerySnapshot> getUserOrders() {
+    return ordersCollection.where('userId', isEqualTo: user!.uid).snapshots();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,6 @@ class _OrderPageState extends State<OrderPage> {
       appBar: AppBar(title: const Text("Pemesanan")),
       body: Column(
         children: [
-          // Notes Geser ke Kiri untuk Menghapus
           Container(
             padding: const EdgeInsets.all(8.0),
             color: AppColors.primaryColor,
@@ -37,7 +42,7 @@ class _OrderPageState extends State<OrderPage> {
           ),
           Expanded(
             child: StreamBuilder(
-              stream: ordersCollection.snapshots(),
+              stream: getUserOrders(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -178,10 +183,19 @@ class _OrderPageState extends State<OrderPage> {
 
   void _createNewOrder() {
     if (serviceController.text.isNotEmpty) {
+      print("Menambahkan pesanan untuk user: ${user?.uid}"); // 🔹 Debugging
+
       ordersCollection.add({
         'service': serviceController.text,
-        'status': false, // Default status: Belum selesai
+        'status': false,
+        'userId': user?.uid, // 🔹 Pastikan userId ada dan sesuai
+        'createdAt': FieldValue.serverTimestamp(),
+      }).then((_) {
+        print("Pesanan berhasil ditambahkan!"); // 🔹 Debugging sukses
+      }).catchError((error) {
+        print("Gagal menambahkan pesanan: $error"); // 🔹 Debugging error
       });
+
       serviceController.clear();
     }
   }

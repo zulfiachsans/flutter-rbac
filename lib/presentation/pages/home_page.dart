@@ -21,6 +21,12 @@ class _HomePageState extends State<HomePage> {
     final CollectionReference ordersCollection =
         FirebaseFirestore.instance.collection('orders');
     User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      print("UID pengguna: ${user.uid}"); // 🔹 Debugging UID
+    } else {
+      print("Gagal mendapatkan UID pengguna.");
+    }
+
     void _updateOrderStatus(String docId, bool newStatus) {
       ordersCollection.doc(docId).update({'status': newStatus});
     }
@@ -52,8 +58,10 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 child: StreamBuilder(
-                  stream:
-                      ordersCollection.limit(5).snapshots(), // 🔹 Batasi 5 data
+                  stream: ordersCollection
+                      .where('userId', isEqualTo: user?.uid)
+                      .limit(5)
+                      .snapshots(), // 🔹 Batasi 5 data
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());

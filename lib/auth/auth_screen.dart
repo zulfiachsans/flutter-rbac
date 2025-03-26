@@ -37,7 +37,22 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+
         await authResult.user!.updateDisplayName(userName);
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user!.uid)
+            .set({
+          'uid': authResult.user!.uid,
+          'email': email,
+          'username': userName,
+          'createdAt': FieldValue.serverTimestamp(),
+        }).then((_) {
+          print("User berhasil ditambahkan ke Firestore!");
+        }).catchError((error) {
+          print("Gagal menambahkan user: $error"); // 🔹 Debugging error
+        });
       }
     } on FirebaseAuthException catch (e) {
       String message = "Terjadi kesalahan, coba lagi.";

@@ -171,6 +171,7 @@ class _AuthFormState extends State<AuthForm> {
                     CustomTextField(
                       key: const ValueKey('username'),
                       label: 'Username',
+                      isUsername: true,
                       validator: (value) {
                         if (value!.isEmpty || value.length < 4) {
                           return 'Please enter at least 4 characters';
